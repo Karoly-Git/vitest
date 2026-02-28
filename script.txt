@@ -1,0 +1,24 @@
+https://vitest.dev/guide/
+
+#1
+- A unit test is a small piece of code that checks one specific function or part of 
+an app to make sure it works correctly.
+
+- End-to-end tests check the whole application by simulating real user actions.
+- Integration tests check how different parts of the application work together.
+- Unit tests check individual functions or components on their own.
+
+- Unit tests should check what a function does on its own, not how it is implemented.
+- Write tests where they bring real value, such as for complex logic, many edge cases, or 
+important parts of the app, because they improve code reliability and developer productivity.
+
+-npm init -y
+-npm install -D vitest
+
+Replace the "test" script in package.json with "vitest":
+
+  "scripts": {
+    "test": "vitest"
+  },
+
+  npm run test  / npm test
