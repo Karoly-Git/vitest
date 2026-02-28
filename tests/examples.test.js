@@ -65,8 +65,8 @@ describe('examples.isPrime', () => {
 });
 
 describe('examples.shippingCost', () => {
-    it('wrong weight input', () => {
-        const badWeigtCall = () => shippingCost("wrong weigh");
+    it('bad weight input', () => {
+        const badWeigtCall = () => shippingCost("bad weigh");
         expect(badWeigtCall).toThrow();
     });
 
@@ -76,5 +76,28 @@ describe('examples.shippingCost', () => {
         { weight: 15, expected: 8.99 },
     ])('shipping cost', ({ weight, expected }) => {
         expect(shippingCost(weight)).toBe(expected);
+        it('bad cupon input', () => {
+            const badCuponCall = () => shippingCost(5, 459);
+            expect(badCuponCall).toThrow();
+        });
+
+        it('weight <= 0', () => {
+            expect(() => shippingCost(0)).toThrow();
+            expect(() => shippingCost(-0.25)).toThrow();
+        });
+
+        it('free shipping', () => {
+            expect(shippingCost(5, 'FREESHIPPING')).toBe(0);
+        });
+
+        it('returns cost', () => {
+            expect(shippingCost(0.1)).toBe(3.99);
+            expect(shippingCost(1)).toBe(3.99);
+            expect(shippingCost(1.1)).toBe(5.99);
+            expect(shippingCost(5)).toBe(5.99);
+            expect(shippingCost(5.1)).toBe(8.99);
+            expect(shippingCost(20)).toBe(8.99);
+            expect(shippingCost(20.1)).toBe(14.99);
+>>>>>>> 8730cb4fc5a9037a205b73e9e2d3cf738170627f
+        });
     });
-});
