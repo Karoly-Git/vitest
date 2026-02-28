@@ -65,39 +65,41 @@ describe('examples.isPrime', () => {
 });
 
 describe('examples.shippingCost', () => {
+
     it('bad weight input', () => {
-        const badWeigtCall = () => shippingCost("bad weigh");
-        expect(badWeigtCall).toThrow();
+        const badWeightCall = () => shippingCost("bad weigh");
+        expect(badWeightCall).toThrow();
     });
 
     it.each([
         { weight: 0.2, expected: 3.99 },
         { weight: 5, expected: 5.99 },
         { weight: 15, expected: 8.99 },
-    ])('shipping cost', ({ weight, expected }) => {
+    ])('returns correct shipping cost for weight %f', ({ weight, expected }) => {
         expect(shippingCost(weight)).toBe(expected);
-        it('bad cupon input', () => {
-            const badCuponCall = () => shippingCost(5, 459);
-            expect(badCuponCall).toThrow();
-        });
-
-        it('weight <= 0', () => {
-            expect(() => shippingCost(0)).toThrow();
-            expect(() => shippingCost(-0.25)).toThrow();
-        });
-
-        it('free shipping', () => {
-            expect(shippingCost(5, 'FREESHIPPING')).toBe(0);
-        });
-
-        it('returns cost', () => {
-            expect(shippingCost(0.1)).toBe(3.99);
-            expect(shippingCost(1)).toBe(3.99);
-            expect(shippingCost(1.1)).toBe(5.99);
-            expect(shippingCost(5)).toBe(5.99);
-            expect(shippingCost(5.1)).toBe(8.99);
-            expect(shippingCost(20)).toBe(8.99);
-            expect(shippingCost(20.1)).toBe(14.99);
->>>>>>> 8730cb4fc5a9037a205b73e9e2d3cf738170627f
-        });
     });
+
+    it('bad coupon input', () => {
+        const badCouponCall = () => shippingCost(5, 459);
+        expect(badCouponCall).toThrow();
+    });
+
+    it('weight <= 0 throws error', () => {
+        expect(() => shippingCost(0)).toThrow();
+        expect(() => shippingCost(-0.25)).toThrow();
+    });
+
+    it('free shipping coupon', () => {
+        expect(shippingCost(5, 'FREESHIPPING')).toBe(0);
+    });
+
+    it('returns correct cost by ranges', () => {
+        expect(shippingCost(0.1)).toBe(3.99);
+        expect(shippingCost(1)).toBe(3.99);
+        expect(shippingCost(1.1)).toBe(5.99);
+        expect(shippingCost(5)).toBe(5.99);
+        expect(shippingCost(5.1)).toBe(8.99);
+        expect(shippingCost(20)).toBe(8.99);
+        expect(shippingCost(20.1)).toBe(14.99);
+    });
+});
