@@ -69,4 +69,12 @@ describe('examples.shippingCost', () => {
         const badWeigtCall = () => shippingCost("wrong weigh");
         expect(badWeigtCall).toThrow();
     });
+
+    it.each([
+        { weight: 0.2, expected: 3.99 },
+        { weight: 5, expected: 5.99 },
+        { weight: 15, expected: 8.99 },
+    ])('shipping cost', ({ weight, expected }) => {
+        expect(shippingCost(weight)).toBe(expected);
+    });
 });
