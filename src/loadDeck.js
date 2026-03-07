@@ -1,18 +1,13 @@
 const DECKS = {
     standard: {
-        suits: ['hearts', 'diamonds', 'clubs', 'spades'],
-        values: [
-            'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'
-        ]
+        suits: ['Hearts', 'Diamonds', 'Clubs', 'Spades'],
+        values: ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King']
     },
     pokemon: {
-        suits: ['fire', 'water', 'grass', 'electric'],
-        values: [
-            '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'
-        ]
-    }
+        suits: ['Grass', 'Fire', 'Water', 'Electric'],
+        values: ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Pichu', 'Pikachu', 'Raichu']
+    },
 };
-
 // mimic async fetch with a next-tick delay
 export function loadDeck(id = 'standard') {
     return new Promise((resolve, reject) => {
